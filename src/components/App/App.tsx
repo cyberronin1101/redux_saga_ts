@@ -6,8 +6,9 @@ import News from "../News/News";
 import Button from "../Button/Button";
 
 function App() {
-  const latestNews = useSelector((store: IStore) => store.news.latestNews);
-  const popularNews = useSelector((store: IStore) => store.news.popularNews);
+  const { popularNews, latestNews, popularNewsError, latestNewsError } =
+    useSelector((store: IStore) => store.news);
+
   const dispatch = useDispatch();
 
   const handleNews = () => {
@@ -19,8 +20,12 @@ function App() {
         <Button onClick={handleNews}>Get News</Button>
       </div>
       <div className={stylus.content}>
-        <News news={latestNews} title={"Latest News"} />
-        <News news={popularNews} title={"Popular News"} />
+        <News news={latestNews} title={"Latest News"} error={latestNewsError} />
+        <News
+          news={popularNews}
+          title={"Popular News"}
+          error={popularNewsError}
+        />
       </div>
     </div>
   );

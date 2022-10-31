@@ -1,20 +1,31 @@
-// import { take, takeEvery, takeLatest, takeLeading, select, put, call, fork, all, race } from "@redux-saga/core/effects";
-import { setLatestNews, setPopularNews } from "../redux/news/news.actions";
+// import { take, takeEvery, takeLatest, takeLeading, select, put, call, fork, all, race, spawn } from "@redux-saga/core/effects";
+import {
+  setLatestNews,
+  setLatestNewsError,
+  setPopularNews,
+  setPopularNewsError,
+} from "../redux/news/news.actions";
 import { takeEvery, put, call, fork } from "@redux-saga/core/effects";
 import { Api, hitsType } from "../api/api";
 
-import { newsActions } from "../redux/news/news.types";
+import { newsTypes } from "../redux/news/news.types";
 
 export function* handleLatestNews() {
-  const { hits }: hitsType = yield call(Api.getLatestNews, "react");
-  yield put(setLatestNews(hits));
-  yield;
+  try {
+    const { hits }: hitsType = yield call(Api.getLatestNews, "react");
+    yield put(setLatestNews(hits));
+  } catch {
+    yield put(setLatestNewsError("Error fetching last news"));
+  }
 }
 
 export function* handlePopularNews() {
-  const { hits }: hitsType = yield call(Api.getPopularNews);
-  yield put(setPopularNews(hits));
-  yield;
+  try {
+    const { hits }: hitsType = yield call(Api.getPopularNews);
+    yield put(setPopularNews(hits));
+  } catch {
+    yield put(setPopularNewsError("Error fetching popular news"));
+  }
 }
 
 export function* handleNews() {
@@ -23,14 +34,10 @@ export function* handleNews() {
 
   yield fork(handleLatestNews);
   yield fork(handlePopularNews);
-
-  yield;
 }
 
 export function* watchClicksSaga() {
-  yield takeEvery(newsActions.GET_NEWS, handleNews);
-
-  yield;
+  yield takeEvery(newsTypes.GET_NEWS, handleNews);
 }
 
 export default function* rootSaga() {

@@ -7,7 +7,8 @@ export class Api {
 
   static getLatestNews = async (searchQuery: string) => {
     const request = await axios<hitsType>(
-      this.baseUrl + `/search?query=${searchQuery}&hitsPerPage=10&page=10`
+      // this.baseUrl + `/search?query=${searchQuery}&hitsPerPage=10&page=10`  // good
+      this.baseUrl + `1/1/1/search?query=${searchQuery}&hitsPerPage=10&page=10` // error
     );
 
     return request.data;

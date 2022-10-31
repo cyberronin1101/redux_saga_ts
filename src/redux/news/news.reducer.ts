@@ -1,21 +1,33 @@
-import { newsActions, newsStoreType, newsTypes } from "./news.types";
+import { newsTypes, newsStoreType, newsActionsType } from "./news.types";
 
 const initialState: newsStoreType = {
   latestNews: [],
   popularNews: [],
+  latestNewsError: "",
+  popularNewsError: "",
 };
 
-const news = (state = initialState, action: newsTypes) => {
-  switch (action.type) {
-    case newsActions.SET_LATEST_NEWS:
+const news = (state = initialState, { type, payload }: newsActionsType) => {
+  switch (type) {
+    case newsTypes.SET_LATEST_NEWS:
       return {
         ...state,
-        latestNews: [...state.latestNews, ...action.payload],
+        latestNews: [...state.latestNews, ...payload],
       };
-    case newsActions.SET_POPULAR_NEWS:
+    case newsTypes.SET_POPULAR_NEWS:
       return {
         ...state,
-        popularNews: [...state.popularNews, ...action.payload],
+        popularNews: [...state.popularNews, ...payload],
+      };
+    case newsTypes.SET_POPULAR_NEWS_ERROR:
+      return {
+        ...state,
+        popularNewsError: payload,
+      };
+    case newsTypes.SET_LATEST_NEWS_ERROR:
+      return {
+        ...state,
+        latestNewsError: payload,
       };
     default:
       return state;

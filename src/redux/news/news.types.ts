@@ -3,28 +3,36 @@ import { newsType } from "../../api/api.types";
 export type newsStoreType = {
   latestNews: newsType[];
   popularNews: newsType[];
+
+  // ERRORS
+  latestNewsError: string;
+  popularNewsError: string;
 };
 
-export enum newsActions {
+export enum newsTypes {
   GET_NEWS = "GET_NEWS",
   GET_LATEST_NEWS = "GET_LATEST_NEWS",
   SET_LATEST_NEWS = "SET_LATEST_NEWS",
   GET_POPULAR_NEWS = "GET_POPULAR_NEWS",
   SET_POPULAR_NEWS = "SET_POPULAR_NEWS",
+
+  // ERRORS
+  SET_LATEST_NEWS_ERROR = "SET_LATEST_NEWS_ERROR",
+  SET_POPULAR_NEWS_ERROR = "SET_POPULAR_NEWS_ERROR",
 }
 
-export type newsTypes =
+export type newsActionsType =
   | {
-      type: newsActions.GET_LATEST_NEWS;
+      type: newsTypes.GET_LATEST_NEWS | newsTypes.GET_POPULAR_NEWS;
+      payload: never;
     }
   | {
-      type: newsActions.SET_LATEST_NEWS;
+      type: newsTypes.SET_LATEST_NEWS | newsTypes.SET_POPULAR_NEWS;
       payload: newsType[];
     }
+
+  // ERRORS
   | {
-      type: newsActions.GET_POPULAR_NEWS;
-    }
-  | {
-      type: newsActions.SET_POPULAR_NEWS;
-      payload: newsType[];
+      type: newsTypes.SET_LATEST_NEWS_ERROR | newsTypes.SET_POPULAR_NEWS_ERROR;
+      payload: string;
     };
