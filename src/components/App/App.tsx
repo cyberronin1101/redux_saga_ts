@@ -2,10 +2,9 @@ import stylus from "./App.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { IStore } from "../../redux/store";
 import { getNews } from "../../redux/news/news.actions";
-import News from "../News/News";
-import Button from "../Button/Button";
+import { Button, News } from "..";
 
-function App() {
+export function App() {
   const { popularNews, latestNews, popularNewsError, latestNewsError } =
     useSelector((store: IStore) => store.news);
 
@@ -30,5 +29,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

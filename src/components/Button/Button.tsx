@@ -2,7 +2,7 @@ import { buttonProps } from "./Button.props";
 import styles from "./Button.module.css";
 import cn from "classnames";
 
-const Button = ({
+export const Button = ({
   children,
   className,
   ...props
@@ -13,5 +13,3 @@ const Button = ({
     </button>
   );
 };
-
-export default Button;

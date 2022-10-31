@@ -1,7 +1,7 @@
 import { newsProps } from "./News.props";
 import styles from "./News.module.css";
 
-const News = ({ news, title, error }: newsProps): JSX.Element | null => {
+export const News = ({ news, title, error }: newsProps): JSX.Element | null => {
   if (!news.length && !error) {
     return null;
   }
@@ -29,5 +29,3 @@ const News = ({ news, title, error }: newsProps): JSX.Element | null => {
     </div>
   );
 };
-
-export default News;
