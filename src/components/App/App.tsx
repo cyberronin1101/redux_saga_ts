@@ -14,9 +14,13 @@ function App() {
 
   return (
     <div className={stylus.app}>
-      <button onClick={() => updateCount(-1)}>-</button>
-      <button onClick={() => updateCount()}>+</button>
-      <h1>{count}</h1>
+      <div>
+        <button onClick={() => updateCount(-1)}>-</button>
+        <button onClick={() => updateCount()}>+</button>
+        <h1>{count}</h1>
+      </div>
+
+      <div></div>
     </div>
   );
 }
