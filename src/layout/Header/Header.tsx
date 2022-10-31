@@ -1,19 +1,27 @@
-import cn from "classnames";
 import { headerProps } from "./Header.props";
 import styles from "./Header.module.css";
-import { Button } from "../../components";
-import { useDispatch } from "react-redux";
-import { getNews } from "../../redux/news/news.actions";
+import { NavLink } from "react-router-dom";
+import cn from "classnames";
 
 export const Header = ({ className }: headerProps) => {
-  const dispatch = useDispatch();
+  const isActive = ({ isActive }: { isActive: boolean; isPending: boolean }) =>
+    isActive ? styles.active : "";
 
-  const handleNews = () => {
-    dispatch(getNews());
-  };
   return (
     <header className={cn(className, styles.header)}>
-      <Button onClick={handleNews}>Get News</Button>
+      <div className={styles.wrapper}>
+        <nav className={styles.nav}>
+          <NavLink to={"/"} end className={isActive}>
+            Home
+          </NavLink>
+          <NavLink to={"/news/latest"} className={isActive}>
+            Latest news
+          </NavLink>
+          <NavLink to={"/news/popular"} className={isActive}>
+            Popular news
+          </NavLink>
+        </nav>
+      </div>
     </header>
   );
 };

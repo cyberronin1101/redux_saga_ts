@@ -1,13 +1,13 @@
 import { FC, PropsWithChildren } from "react";
 import styles from "./Layout.module.css";
-import { Header } from "..";
+import { Footer, Header } from "..";
 
 const Layout = ({ children }: PropsWithChildren): JSX.Element => {
   return (
     <div className={styles.layout}>
       <Header className={styles.header} />
       <main className={styles.main}>{children}</main>
-      <footer className={styles.footer}>footer</footer>
+      <Footer className={styles.footer} />
     </div>
   );
 };
