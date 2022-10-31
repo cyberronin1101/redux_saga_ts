@@ -3,6 +3,7 @@ import stylus from "./App.module.css";
 import { counterCustomStep } from "../../redux/counter/counter.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { IStore } from "../../redux/store";
+import { getLatestNews } from "../../redux/news/news.actions";
 
 function App() {
   const count = useSelector((store: IStore) => store.counter.count);
@@ -12,6 +13,9 @@ function App() {
     dispatch(counterCustomStep(step));
   };
 
+  const handleNews = () => {
+    dispatch(getLatestNews());
+  };
   return (
     <div className={stylus.app}>
       <div>
@@ -20,7 +24,9 @@ function App() {
         <h1>{count}</h1>
       </div>
 
-      <div></div>
+      <div>
+        <button onClick={handleNews}>Get News</button>
+      </div>
     </div>
   );
 }
