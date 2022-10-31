@@ -1,0 +1,13 @@
+.layout {
+  display: grid;
+  grid-template-columns: auto minmax(280px, 1200px) auto;
+  padding: 20px;
+  gap: 20px 0;
+}
+
+.header,
+.main,
+.footer {
+  grid-column: 2;
+}
+
