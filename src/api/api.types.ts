@@ -5,6 +5,8 @@ export type newsType = {
   url: string;
   author: string;
   points: number;
+  num_comments: number;
+  created_at: string;
   tags: tagType[];
 };
 
