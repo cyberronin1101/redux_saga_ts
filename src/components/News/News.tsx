@@ -9,7 +9,7 @@ const News = ({ news, title }: newsProps): JSX.Element => {
     <div className={styles.news}>
       {title && <h2 className={styles.header}>{title}</h2>}
       {news.map((newsItem) => (
-        <article key={newsItem.url} className={styles.newsItem}>
+        <article key={newsItem.title} className={styles.newsItem}>
           <h3 className={styles.title}>
             <a href={newsItem.url} target={"_blank"} rel={"noreferrer"}>
               {newsItem.title}

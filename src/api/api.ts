@@ -12,4 +12,12 @@ export class Api {
 
     return request.data;
   };
+
+  static getPopularNews = async () => {
+    const request = await axios<hitsType>(
+      this.baseUrl + `/search?query&hitsPerPage=10&page=10`
+    );
+
+    return request.data;
+  };
 }

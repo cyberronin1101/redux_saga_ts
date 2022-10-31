@@ -8,6 +8,10 @@ export const setLatestNews = (payload: newsType[]) => ({
   payload,
 });
 
+export const getNews = () => ({
+  type: newsActions.GET_NEWS,
+});
+
 export const getPopularNews = () => ({ type: newsActions.GET_POPULAR_NEWS });
 
 export const setPopularNews = (payload: newsType[]) => ({

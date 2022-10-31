@@ -1,7 +1,7 @@
 import stylus from "./App.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { IStore } from "../../redux/store";
-import { getLatestNews, getPopularNews } from "../../redux/news/news.actions";
+import { getNews } from "../../redux/news/news.actions";
 import News from "../News/News";
 import Button from "../Button/Button";
 
@@ -11,8 +11,7 @@ function App() {
   const dispatch = useDispatch();
 
   const handleNews = () => {
-    dispatch(getLatestNews());
-    dispatch(getPopularNews());
+    dispatch(getNews());
   };
   return (
     <div className={stylus.app}>
