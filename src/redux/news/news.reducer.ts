@@ -12,12 +12,12 @@ const news = (state = initialState, { type, payload }: newsActionsType) => {
     case newsTypes.SET_LATEST_NEWS:
       return {
         ...state,
-        latestNews: [...state.latestNews, ...payload],
+        latestNews: payload,
       };
     case newsTypes.SET_POPULAR_NEWS:
       return {
         ...state,
-        popularNews: [...state.popularNews, ...payload],
+        popularNews: payload,
       };
     case newsTypes.SET_POPULAR_NEWS_ERROR:
       return {

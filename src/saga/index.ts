@@ -5,7 +5,7 @@ import {
   setPopularNews,
   setPopularNewsError,
 } from "../redux/news/news.actions";
-import { takeEvery, put, call, fork } from "@redux-saga/core/effects";
+import { takeEvery, put, call, all, fork } from "@redux-saga/core/effects";
 import { Api, hitsType } from "../api/api";
 
 import { newsTypes } from "../redux/news/news.types";
@@ -13,6 +13,7 @@ import { newsTypes } from "../redux/news/news.types";
 export function* handleLatestNews() {
   try {
     const { hits }: hitsType = yield call(Api.getLatestNews, "react");
+
     yield put(setLatestNews(hits));
   } catch {
     yield put(setLatestNewsError("Error fetching last news"));
@@ -28,18 +29,14 @@ export function* handlePopularNews() {
   }
 }
 
-export function* handleNews() {
-  // race for first
-  // yield all([call(handlePopularNews), call(handleLatestNews)]); // all or nothing
-
-  yield fork(handleLatestNews);
-  yield fork(handlePopularNews);
+export function* watchLatestNewsSaga() {
+  yield takeEvery(newsTypes.GET_LATEST_NEWS, handleLatestNews);
 }
 
-export function* watchClicksSaga() {
-  yield takeEvery(newsTypes.GET_NEWS, handleNews);
+export function* watchPopularNewsSaga() {
+  yield takeEvery(newsTypes.GET_POPULAR_NEWS, handlePopularNews);
 }
 
 export default function* rootSaga() {
-  yield watchClicksSaga();
+  yield all([fork(watchLatestNewsSaga), fork(watchPopularNewsSaga)]);
 }

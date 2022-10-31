@@ -10,7 +10,6 @@ export type newsStoreType = {
 };
 
 export enum newsTypes {
-  GET_NEWS = "GET_NEWS",
   GET_LATEST_NEWS = "GET_LATEST_NEWS",
   SET_LATEST_NEWS = "SET_LATEST_NEWS",
   GET_POPULAR_NEWS = "GET_POPULAR_NEWS",
