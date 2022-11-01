@@ -1,6 +1,6 @@
-import { routerActions } from "./router.types";
+import { routerTypes } from "./router.types";
 
 export const updateLocation = <T>(payload: T) => ({
-  type: routerActions.UPDATE_LOCATION,
+  type: routerTypes.UPDATE_LOCATION,
   payload,
 });

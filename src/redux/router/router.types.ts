@@ -4,11 +4,11 @@ export type routerStoreType = {
   location: Location;
 };
 
-export enum routerActions {
+export enum routerTypes {
   UPDATE_LOCATION = "UPDATE_LOCATION",
 }
 
-export type routerTypes = {
-  type: routerActions.UPDATE_LOCATION;
+export type routerActions = {
+  type: routerTypes.UPDATE_LOCATION;
   payload: routerStoreType;
 };

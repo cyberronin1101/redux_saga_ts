@@ -10,9 +10,9 @@ const initialState: routerStoreType = {
   },
 };
 
-const router = (state = initialState, { type, payload }: routerTypes) => {
+const router = (state = initialState, { type, payload }: routerActions) => {
   switch (type) {
-    case routerActions.UPDATE_LOCATION:
+    case routerTypes.UPDATE_LOCATION:
       return {
         ...state,
         location: payload,

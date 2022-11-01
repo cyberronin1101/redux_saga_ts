@@ -14,7 +14,6 @@ export const Router = () => {
   let dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(123);
     dispatch(updateLocation(location));
   }, [dispatch, location]);
 

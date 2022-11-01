@@ -10,9 +10,9 @@ export type newsStoreType = {
 };
 
 export enum newsTypes {
-  GET_LATEST_NEWS = "GET_LATEST_NEWS",
+  // GET_LATEST_NEWS = "GET_LATEST_NEWS",
+  // GET_POPULAR_NEWS = "GET_POPULAR_NEWS",
   SET_LATEST_NEWS = "SET_LATEST_NEWS",
-  GET_POPULAR_NEWS = "GET_POPULAR_NEWS",
   SET_POPULAR_NEWS = "SET_POPULAR_NEWS",
 
   // ERRORS
@@ -21,10 +21,10 @@ export enum newsTypes {
 }
 
 export type newsActionsType =
-  | {
-      type: newsTypes.GET_LATEST_NEWS | newsTypes.GET_POPULAR_NEWS;
-      payload: never;
-    }
+  // | {
+  //     type: newsTypes.GET_LATEST_NEWS | newsTypes.GET_POPULAR_NEWS;
+  //     payload: never;
+  //   }
   | {
       type: newsTypes.SET_LATEST_NEWS | newsTypes.SET_POPULAR_NEWS;
       payload: newsType[];

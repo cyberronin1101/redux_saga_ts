@@ -5,10 +5,10 @@ import {
   setPopularNews,
   setPopularNewsError,
 } from "../news/news.actions";
-import { takeEvery, put, call, all, fork } from "@redux-saga/core/effects";
+import { takeEvery, put, call, all, select } from "@redux-saga/core/effects";
 import { Api, hitsType } from "../../api/api";
-
-import { newsTypes } from "../news/news.types";
+import { routerTypes } from "../router/router.types";
+import { IStore } from "../store";
 
 export function* handleLatestNews() {
   try {
@@ -29,14 +29,18 @@ export function* handlePopularNews() {
   }
 }
 
-export function* watchLatestNewsSaga() {
-  yield takeEvery(newsTypes.GET_LATEST_NEWS, handleLatestNews);
-}
+export function* watchNewsSaga() {
+  const pathname: string = yield select(
+    ({ router }: IStore) => router.location.pathname
+  );
 
-export function* watchPopularNewsSaga() {
-  yield takeEvery(newsTypes.GET_POPULAR_NEWS, handlePopularNews);
+  if (pathname === "/") {
+    yield all([call(handlePopularNews), call(handleLatestNews)]);
+  }
+  if (pathname === "/news/popular") yield call(handlePopularNews);
+  if (pathname === "/news/latest") yield call(handleLatestNews);
 }
 
 export default function* rootSaga() {
-  yield all([fork(watchLatestNewsSaga), fork(watchPopularNewsSaga)]);
+  yield takeEvery(routerTypes.UPDATE_LOCATION, watchNewsSaga);
 }
