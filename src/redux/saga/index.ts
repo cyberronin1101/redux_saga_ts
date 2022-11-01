@@ -1,5 +1,6 @@
 // import { take, takeEvery, takeLatest, takeLeading, select, put, call, fork, all, race, spawn } from "@redux-saga/core/effects";
 import {
+  setDataLoading,
   setLatestNews,
   setLatestNewsError,
   setPopularNews,
@@ -30,6 +31,8 @@ export function* handlePopularNews() {
 }
 
 export function* watchNewsSaga() {
+  yield put(setDataLoading(true));
+
   const pathname: string = yield select(
     ({ router }: IStore) => router.location.pathname
   );
@@ -39,6 +42,8 @@ export function* watchNewsSaga() {
   }
   if (pathname === "/news/popular") yield call(handlePopularNews);
   if (pathname === "/news/latest") yield call(handleLatestNews);
+
+  yield put(setDataLoading(false));
 }
 
 export default function* rootSaga() {

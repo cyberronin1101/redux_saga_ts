@@ -3,6 +3,11 @@ import { newsType } from "../../api/api.types";
 
 // export const getLatestNews = () => ({ type: newsTypes.GET_LATEST_NEWS });
 
+export const setDataLoading = (payload: boolean) => ({
+  type: newsTypes.SET_LOADING_DATA,
+  payload,
+});
+
 export const setLatestNews = (payload: newsType[]) => ({
   type: newsTypes.SET_LATEST_NEWS,
   payload,

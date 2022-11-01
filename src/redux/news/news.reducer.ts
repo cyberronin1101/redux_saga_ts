@@ -1,8 +1,11 @@
-import { newsTypes, newsStoreType, newsActionsType } from "./news.types";
+import { newsActionsType, newsStoreType, newsTypes } from "./news.types";
 
 const initialState: newsStoreType = {
   latestNews: [],
   popularNews: [],
+
+  isLoading: false,
+
   latestNewsError: "",
   popularNewsError: "",
 };
@@ -18,6 +21,11 @@ const news = (state = initialState, { type, payload }: newsActionsType) => {
       return {
         ...state,
         popularNews: payload,
+      };
+    case newsTypes.SET_LOADING_DATA:
+      return {
+        ...state,
+        isLoading: payload,
       };
     case newsTypes.SET_POPULAR_NEWS_ERROR:
       return {
