@@ -15,7 +15,7 @@ const Layout = ({ children }: PropsWithChildren): JSX.Element => {
 export const withLayout = <T extends JSX.IntrinsicAttributes>(
   Component: FC<T>
 ) => {
-  return function withLayoutComponent(props: T): JSX.Element {
+  return (props: T): JSX.Element => {
     return (
       <Layout>
         <Component {...props} />

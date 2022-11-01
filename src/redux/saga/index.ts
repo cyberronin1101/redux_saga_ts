@@ -4,11 +4,11 @@ import {
   setLatestNewsError,
   setPopularNews,
   setPopularNewsError,
-} from "../redux/news/news.actions";
+} from "../news/news.actions";
 import { takeEvery, put, call, all, fork } from "@redux-saga/core/effects";
-import { Api, hitsType } from "../api/api";
+import { Api, hitsType } from "../../api/api";
 
-import { newsTypes } from "../redux/news/news.types";
+import { newsTypes } from "../news/news.types";
 
 export function* handleLatestNews() {
   try {
